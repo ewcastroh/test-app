@@ -1,149 +1,82 @@
-# quiz-cli
+# Quiz CLI
 
-An interactive command-line quiz game for learning JavaScript.
+A simple Node.js command-line quiz application that loads questions from `data/questions.json`, prompts the user in the terminal, and displays results with colored output.
 
-This repository contains a Node.js CLI app that loads quiz questions from `data/questions.json`, lets you choose a category and number of questions, then runs a scored quiz with progress updates, answer feedback, explanations, and a final results summary.
+## Overview
 
-## Project overview
+This repository appears to be a lightweight quiz/game app built with Node.js. The code is organized into small modules for input handling, quiz flow, and terminal colors.
 
-The app is organized around a simple CLI flow:
+## Setup
 
-1. Show a banner
-2. Select a quiz category
-3. Choose how many questions to answer
-4. Run the quiz loop
-5. Display final results
-6. Offer to play again
+### Prerequisites
 
-It uses ES modules and Node’s built-in APIs only.
+- Node.js
+- npm
 
-## Features
-
-- Category-based quiz selection
-- Configurable number of questions
-- Shuffled question order
-- Multiple-choice answer selection
-- Score tracking
-- Answer history
-- Progress feedback during the quiz
-- Correctness feedback after each question
-- Explanations for answers
-- Final results summary
-- Colorized terminal output
-- Replay prompt after finishing
-
-## Requirements
-
-- Node.js `>=18.0.0`
-
-## Installation
-
-No dependencies are declared in `package.json`, so there is nothing to install.
-
-Clone the repository and make sure you are using a compatible Node.js version:
+### Install dependencies
 
 ```bash
-git clone https://github.com/ewcastroh/test-app.git
-cd test-app
+npm install
 ```
 
-## Usage
-
-Run the quiz with:
-
-```bash
-npm start
-```
-
-Or run the entry point directly:
+If the project does not define an `npm` start script, you can run it directly with Node.js:
 
 ```bash
 node index.js
 ```
 
-## Available scripts
+## Usage
 
-From `package.json`:
-
-```json
-{
-  "start": "node index.js",
-  "test": "node --test"
-}
-```
-
-### Start the app
+Start the quiz from the project root:
 
 ```bash
-npm start
+node index.js
 ```
 
-### Run tests
+The quiz will:
 
-```bash
-npm test
-```
+- read questions from `data/questions.json`
+- prompt for user input in the terminal
+- evaluate answers
+- display feedback and/or results in color
 
-## Project structure
+## Key Features
+
+- Terminal-based quiz flow
+- Question data stored in JSON
+- Modular source structure
+- Colored console output
+- Separate input and quiz logic for easier maintenance
+
+## Project Structure
 
 ```text
 .
+├── index.js
 ├── data/
 │   └── questions.json
-├── index.js
+├── src/
+│   ├── colors.js
+│   ├── input.js
+│   └── quiz.js
 ├── package.json
-└── src/
-    ├── colors.js
-    ├── input.js
-    └── quiz.js
+└── .gitignore
 ```
 
-### Key files
+### File responsibilities
 
-- `index.js` — application entry point; loads questions, handles category and question-count selection, runs the quiz, and shows results
-- `src/quiz.js` — quiz engine with shuffling, scoring, answer history, progress, feedback, explanations, and final results
-- `src/input.js` — `readline` helpers for prompts, numbered selections, yes/no confirmation, and waiting for Enter
-- `src/colors.js` — ANSI terminal color helpers
-- `data/questions.json` — quiz content and category data
+- `index.js` — application entry point
+- `src/quiz.js` — quiz logic and orchestration
+- `src/input.js` — terminal input handling
+- `src/colors.js` — console color helpers
+- `data/questions.json` — quiz questions and answers
 
-## Quiz data format
+## Customization
 
-The quiz content lives in `data/questions.json`.
+To change the quiz content, edit `data/questions.json`.
 
-Based on the current repository structure, the quiz data includes:
+If you want to adjust terminal styling or output colors, check `src/colors.js`.
 
-- quiz categories
-- question entries
-- multiple-choice options
-- correct answer indexes
-- explanations
+## Notes
 
-If you want to add or modify questions, update this file to match the existing structure used by the app.
-
-## Extending the question bank
-
-To add more quiz content:
-
-1. Open `data/questions.json`
-2. Add questions to an existing category or create a new category
-3. Make sure each question includes:
-   - question text
-   - a set of answer options
-   - the index of the correct option
-   - an explanation
-
-Keep the format consistent with the current data so the quiz can load it correctly.
-
-## Testing
-
-Run the built-in test runner with:
-
-```bash
-npm test
-```
-
-This uses Node’s native test runner (`node --test`).
-
-## License
-
-MIT
+This README is based on the repository structure and available filenames. If you want a more precise setup or usage guide, share the contents of `package.json` and the source files.
